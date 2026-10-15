@@ -4,6 +4,12 @@ from telebot import types
 TOKEN = '8864719805:AAEODhrkA5Y-wyUxrHfAHR7I5dm7Ow4qj58'
 bot = telebot.TeleBot(TOKEN)
 
+# مسح أي رابط Webhook قديم معلق لكي تعمل طريقة الـ Polling فوراً
+try:
+    bot.remove_webhook()
+except Exception:
+    pass
+
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
